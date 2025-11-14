@@ -2,6 +2,7 @@ import React from 'react';
 import { useConfig } from '../contexts/ConfigContext';
 import { ColorPicker } from './Controls/ColorPicker';
 import { DiamondSelector } from './Controls/DiamondSelector';
+import { DiamondColorSelector } from './Controls/DiamondColorSelector';
 import { BandStyleSelector } from './Controls/BandStyleSelector';
 import { MetalTypeSelector } from './Controls/MetalTypeSelector';
 import { SizeSlider } from './Controls/SizeSlider';
@@ -24,11 +25,9 @@ export const Sidebar: React.FC = () => {
             value={config.diamondShape}
             onChange={(shape) => updateConfig({ diamondShape: shape })}
           />
-          <ColorPicker
-            label="Diamond Color"
+          <DiamondColorSelector
             value={config.diamondColor}
             onChange={(color) => updateConfig({ diamondColor: color })}
-            presetColors={['#ffffff', '#87ceeb', '#ffb6c1', '#fffacd', '#e6e6fa', '#f0e68c']}
           />
         </section>
 
