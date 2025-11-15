@@ -23,6 +23,10 @@ export const MetalTypeSelector: React.FC<MetalTypeSelectorProps> = ({ value, onC
               onClick={() => onChange(type)}
               title={props.description}
             >
+              <span
+                className="metal-color-swatch"
+                style={{ backgroundColor: props.color }}
+              />
               <span className="metal-label">{props.name}</span>
             </button>
           );

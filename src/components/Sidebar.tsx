@@ -1,5 +1,6 @@
 import React from 'react';
 import { useConfig } from '../contexts/ConfigContext';
+import { getMetalColor } from '../utils/materials';
 import { ColorPicker } from './Controls/ColorPicker';
 import { DiamondSelector } from './Controls/DiamondSelector';
 import { DiamondColorSelector } from './Controls/DiamondColorSelector';
@@ -36,7 +37,10 @@ export const Sidebar: React.FC = () => {
           <h2>Band</h2>
           <MetalTypeSelector
             value={config.metalType}
-            onChange={(type) => updateConfig({ metalType: type })}
+            onChange={(type) => {
+              const color = getMetalColor(type);
+              updateConfig({ metalType: type, bandColor: color });
+            }}
           />
           <BandStyleSelector
             value={config.bandStyle}

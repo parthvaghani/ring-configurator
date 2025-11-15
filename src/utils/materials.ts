@@ -1,19 +1,10 @@
 import * as THREE from 'three';
 import { MetalType } from '../contexts/ConfigContext';
 
-export const getMetalMaterial = (metalType: MetalType, customColor?: string) => {
-  const baseColors: Record<MetalType, string> = {
-    'yellow-gold': '#FFD700',
-    'white-gold': '#E5E4E2',
-    'rose-gold': '#B76E79',
-    'silver': '#C0C0C0',
-    'platinum': '#E5E4E2',
-  };
-
-  const color = customColor || baseColors[metalType];
+export const getMetalMaterial = (metalType: MetalType) => {
 
   return new THREE.MeshStandardMaterial({
-    color: new THREE.Color(color),
+    color: new THREE.Color(getMetalColor(metalType)),
     metalness: 0.9,
     roughness: 0.2,
     envMapIntensity: 1.5,
@@ -44,13 +35,25 @@ export const getDiamondMaterial = (color: string) => {
   });
 };
 
+// Metal base colors used in the 3D scene
+export const getMetalColor = (metalType: MetalType): string => {
+  const colors: Record<MetalType, string> = {
+    'yellow-gold': '#f6c25b',
+    'white-gold': '#f5f5f5',
+    'rose-gold': '#f4a8a2',
+    'silver': '#e0e0e0',
+    'platinum': '#f1f1f1',
+  };
+  return colors[metalType];
+};
+
 export const getMetalProperties = (metalType: MetalType) => {
-  const properties: Record<MetalType, { name: string; description: string }> = {
-    'yellow-gold': { name: 'Yellow Gold', description: 'Classic warm golden color' },
-    'white-gold': { name: 'White Gold', description: 'Modern silver-white appearance' },
-    'rose-gold': { name: 'Rose Gold', description: 'Romantic pinkish hue' },
-    'silver': { name: 'Silver', description: 'Bright silvery finish' },
-    'platinum': { name: 'Platinum', description: 'Premium naturally white metal' },
+  const properties: Record<MetalType, { name: string; description: string; color: string }> = {
+    'yellow-gold': { name: 'Yellow Gold', description: 'Classic warm golden color', color: '#f6c25b' },
+    'white-gold': { name: 'White Gold', description: 'Modern silver-white appearance', color: '#f5f5f5' },
+    'rose-gold': { name: 'Rose Gold', description: 'Romantic pinkish hue', color: '#f4a8a2' },
+    'silver': { name: 'Silver', description: 'Bright silvery finish', color: '#e0e0e0' },
+    'platinum': { name: 'Platinum', description: 'Premium naturally white metal', color: '#f1f1f1' },
   };
   return properties[metalType];
 };

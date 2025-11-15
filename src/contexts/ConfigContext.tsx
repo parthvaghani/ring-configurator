@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { getMetalColor } from '../utils/materials';
 
 export type DiamondShape = 'round' | 'princess' | 'emerald' | 'cushion' | 'oval';
 export type MetalType = 'yellow-gold' | 'white-gold' | 'rose-gold' | 'silver' | 'platinum';
@@ -33,11 +34,12 @@ interface ConfigProviderProps {
 }
 
 export const ConfigProvider: React.FC<ConfigProviderProps> = ({ children }) => {
+  const initialMetalType: MetalType = 'yellow-gold';
   const [config, setConfig] = useState<RingConfig>({
     diamondColor: '#ffffff',
     diamondShape: 'round',
-    bandColor: '#ffd700',
-    metalType: 'yellow-gold',
+    bandColor: getMetalColor(initialMetalType),
+    metalType: initialMetalType,
     bandStyle: 'classic',
     ringSize: 7,
   });
